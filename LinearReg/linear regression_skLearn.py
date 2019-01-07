@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 import scipy.stats as stats
-from sklearn.linear_model import LinearRegression
+from sklearn.linear_model import LinearRegression, SGDRegressor
 from sklearn import cross_validation
 from sklearn.datasets import load_boston
 
@@ -32,9 +32,12 @@ print(training_data.head())
 
 # Create a LR object
 linear_mod = LinearRegression()
+#
+linear_mod_sgd = SGDRegressor()
 
 # Train a MODEL
 linear_mod.fit(training_data, data_frame.PRICE)
+linear_mod_sgd.fit(training_data, data_frame.PRICE)
 
 # Check the correlation of features
 additional_info = pd.DataFrame(list(zip(training_data.columns, linear_mod.coef_)), columns = ['features', 'estCoef'])
@@ -49,10 +52,13 @@ additional_info = pd.DataFrame(list(zip(training_data.columns, linear_mod.coef_)
 print(data_frame['PRICE'][0:5])
 #predicted price
 print(linear_mod.predict(training_data)[0:5])
+print(linear_mod_sgd.predict(training_data)[0:5])
 
 #mean square error
 mean_sq_err = np.mean((data_frame['PRICE'] - linear_mod.predict(training_data)) ** 2)
 print(mean_sq_err)
+mean_sq_err = np.mean((data_frame['PRICE'] - linear_mod_sgd.predict(training_data)) ** 2)
+print('sgd', mean_sq_err)
 
 ## ---------------- ##
 # percentage split
@@ -61,6 +67,8 @@ linear_mod = LinearRegression()
 linear_mod.fit(train_feature, train_price)
 pred_train = linear_mod.predict(train_feature)
 pred_test = linear_mod.predict(test_feature)
+
+'''
 print('--------------------')
 print('--------------------')
 print('\nTrain_feature\n')
@@ -71,6 +79,8 @@ print('\nTrain_price\n')
 print(train_price.head())
 print('\nTest_price\n')
 print(test_price.head())
+'''
+
 '''
 mean_sq_err = np.mean((train_price - linear_mod.predict(train_feature)) ** 2)
 print('fit model train_feature and MSE with test_feature', mean_sq_err)
