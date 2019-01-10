@@ -6,6 +6,19 @@ import numpy
 numpy.random.seed(7)
 # load pima indians dataset
 dataset = numpy.loadtxt("pima-indians-diabetes.csv", delimiter=",")
+
+'''
+# Other way to load dataset
+dataset = []
+with open('diabetes.csv','rU') as f:
+    rows = csv.reader(f, delimiter=',')
+    for r in rows:
+        dataset.append(r)
+
+dataset = numpy.asarray(dataset)
+'''
+
+
 # split into input (X) and output (Y) variables
 X = dataset[:,0:8]
 Y = dataset[:,8]
