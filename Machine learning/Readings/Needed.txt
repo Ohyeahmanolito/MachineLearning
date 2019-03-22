@@ -1,0 +1,10 @@
+Ridge regression
+LDA
+regularization
+
+loss function:
+crossentropy vs mean square error
+
+Statistics review: http://homepage.stat.uiowa.edu/~rdecook/stat2020/notes/ch5_pt1.pdf
+
+Link: https://www.simplilearn.com/10-algorithms-machine-learning-engineers-need-to-know-article
